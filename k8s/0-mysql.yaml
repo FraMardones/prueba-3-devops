@@ -3,13 +3,13 @@ kind: Deployment
 metadata:
   name: mysql-db
 spec:
-  replicas: 1 # Una sola réplica es suficiente para la base de datos
+  replicas: 1
   selector:
     matchLabels:
       app: mysql-db
   template:
     metadata:
-      matchLabels:
+      labels: # ⬅️ Corregido: Aquí va 'labels', no 'matchLabels'
         app: mysql-db
     spec:
       containers:
@@ -20,14 +20,14 @@ spec:
           name: mysql
         env:
         - name: MYSQL_ROOT_PASSWORD
-          value: "admin123" # Contraseña maestra interna
+          value: "admin123"
         - name: MYSQL_DATABASE
-          value: "innovatech_db" # Tu esquema automático
+          value: "innovatech_db"
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysql-svc # Nombre del servicio de red interna
+  name: mysql-svc
 spec:
   ports:
   - port: 3306
