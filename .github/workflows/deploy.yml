@@ -8,8 +8,7 @@ on:
 env:
   AWS_REGION: us-east-1
   EKS_CLUSTER_NAME: innovatech-cluster
-  # Registros ECR basados en tus manifiestos
-  ECR_REGISTRY: 937177718894.dkr.ecr.us-east-1.amazonaws.com
+  ECR_REGISTRY: 429809373122.dkr.ecr.us-east-1.amazonaws.com
   REPO_BACK_DESPACHOS: back-despachos
   REPO_BACK_VENTAS: back-ventas
   REPO_FRONT_DESPACHO: front-despacho
