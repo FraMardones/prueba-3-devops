@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-db
+spec:
+  replicas: 1 # Una sola réplica es suficiente para la base de datos
+  selector:
+    matchLabels:
+      app: mysql-db
+  template:
+    metadata:
+      matchLabels:
+        app: mysql-db
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:8.0
+        ports:
+        - containerPort: 3306
+          name: mysql
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "admin123" # Contraseña maestra interna
+        - name: MYSQL_DATABASE
+          value: "innovatech_db" # Tu esquema automático
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-svc # Nombre del servicio de red interna
+spec:
+  ports:
+  - port: 3306
+    targetPort: 3306
+  selector:
+    app: mysql-db

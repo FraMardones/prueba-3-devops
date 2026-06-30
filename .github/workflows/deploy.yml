@@ -60,6 +60,7 @@ jobs:
     # 6. Desplegar los manifiestos en el clúster ordenadamente (IE2 / IE7)
     - name: Deploy to Amazon EKS Cluster
       run: |
+        kubectl apply -f k8s/0-mysql.yaml
         kubectl apply -f k8s/1-secrets.yaml
         kubectl apply -f k8s/2-backend.yaml
         kubectl apply -f k8s/3-frontend.yaml
